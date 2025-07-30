@@ -1,5 +1,7 @@
 import datetime
 import re
+import os
+import json
 
 # Define the custom start date for Week 1
 start_date = datetime.date(2025, 7, 30)
@@ -36,10 +38,38 @@ else:
             selected_week = (week_number, topic, link)
             break
 
+    # Load progress.json
+    progress_file = "progress.json"
+    if os.path.exists(progress_file):
+        with open(progress_file, "r", encoding="utf-8") as f:
+            progress = json.load(f)
+    else:
+        progress = {}
+
+    # Determine notebook filename
+    notebook_filename = f"Python_Learning_Week{current_week}.ipynb"
+    notebook_updated = False
+    if os.path.exists(notebook_filename):
+        modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(notebook_filename)).date()
+        if (today - modified_time).days <= 7:
+            notebook_updated = True
+            progress[f"Week {current_week}"] = "complete"
+    else:
+        notebook_updated = False
+
+    # Save updated progress
+    with open(progress_file, "w", encoding="utf-8") as f:
+        json.dump(progress, f, indent=2)
+
     # Print the result
     if selected_week:
         print(f"📘 Week {selected_week[0]}: {selected_week[1]}")
         print(f"🔗 Link: {selected_week[2]}")
+        status = progress.get(f"Week {current_week}", "incomplete")
+        if notebook_updated:
+            print(f"✅ Status: {status} (automatically marked based on recent notebook update)")
+        else:
+            print(f"✅ Status: {status} (notebook file not found or not updated recently)")
     else:
         print(f"No topic found for custom week {current_week}.")
         print("Please check if the README.md file includes this week.")
