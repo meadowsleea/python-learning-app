@@ -9,3 +9,4 @@ Welcome to my 7-week Python learning series! Each week includes a Jupyter Notebo
 - [Week 5: Introduction to AI/ML](https://colab.research.google.com/github/LeeMeadows/python-learning/blob/main/Python_Learning_Week5.ipynb)
 - [Week 6: Mini Capstone Project](https://colab.research.google.com/github/LeeMeadows/python-learning/blob/main/Python_Learning_Week6.ipynb)
 - [Week 7: Advanced Automation with Python](https://colab.research.google.com/github/LeeMeadows/python-learning/blob/main/Python_Learning_Week7.ipynb)
+- [Week 8: Working with Databases in Python](https://colab.research.google.com/github/LeeMeadows/python-learning/blob/main/Python_Learning_Week8.ipynb)
